@@ -1,0 +1,107 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "type": "boreal",
+        "name": "Tundra, Russia",
+        "image": "tundra.jpg",
+        "copyright": "nPR360RU, 2016"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.529694,
+          69.484838
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "type": "subtropic",
+        "name": "Desert, Niger",
+        "image": "sahara.jpg",
+        "copyright": "Clement Kaze, 2016"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.283691,
+          18.542117
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "type": "antarctica",
+        "name": "Antarctica",
+        "image": "antarctica.jpg",
+        "copyright": "昭和基地, 2016"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.617736,
+          -68.989258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "type": "tropic",
+        "name": "Path Of The Falls Trail, Argentinia",
+        "copyright": "AirPano.com, 2012",
+        "image": "tropic.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.437868,
+          -25.692784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "type": "tropic",
+        "name": "Honoiara, Solomon Islands",
+        "image": "solomon.jpg",
+        "copyright": "Nick Hobgood, 2015"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          159.858474,
+          -9.366976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "type": "continental",
+        "name": "Arolla, Switzerland",
+        "image": "continental.jpg",
+        "copyright": "Eric Guyomard, 2016"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.481790,
+          46.023366
+        ]
+      }
+    }
+  ]
+}

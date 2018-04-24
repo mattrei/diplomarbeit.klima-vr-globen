@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VR Globe</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="VR Globe">
+  <meta property="og:image" content="TODO/preview.jpg"></meta>
+  <!--<script src="https://rawgit.com/aframevr/aframe/9aa61a5/dist/aframe-master.js"></script>-->
+<script type="text/javascript" src="assets/build.js"></script></head>
+<body>
+  <a-scene 
+  show="mainmenu" 
+  show-menu-controls 
+  bind__show-menu-controls="menuOpen: menuVisible; enabled: menuEnabled"
+    >
+    <a-assets>
+      
+
+<img id="img-earth" src="assets/earth_2048.jpg" />
+
+
+
+
+<img id="icon-home" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAQAAABpN6lAAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfhCh0LMze5jNq6AAAEUElEQVR42u2bzW8UZRjAf9MtLNNSa0tbSokiTRuLlFBiLQ0BDxr8uLWoXWMjDUL4KkFjIon+ATXBMwcPciMpF+gJEm54UDmRSMKhFYyxRdjSRWs/WLu7LweoFLq7nd2dd+ad3ef3Xmdn5/nN877vszPPgiAIgiAIgiAIgiCUHJav3x7CBuZJ+nkJftLKcXbzJ1OlKaCLY0TYQS1R7pTe1OvkLDEUiil+oLO0wg+xjcvMo56MeS7T7vN09JR3+IW5/8NXKOb4mb2lkvwDXCXxTPgKxQJXGfB5V/KAGvq5tiz4xXGNT6gp5vDriDCRMXyFYoIIdcUafgOnmCKZVUCSKb6ivrjqgMfzuoWTHKBxhVluYfMq1dzmgTd1qjdbTxntHGQ/TY6OrqaFVdzlPqpYkr+DM2nW/WwjwRk6iiX8vVxgIafwH2+LF4qjMohwiZmcw1coZrlEX7CDr6KHH/O4+0uLox6qghp+mI+5mXfwi+MmEVYHs+T9hlukChaQ4hZfB69ErmeI0YKDXxyjDOmqD/XUAa18yiAvuXa+dWzhP+4RC0bqNzPkQuovnwpDNAdhKrzGMHHXw1co4gyzxezgy3mTEaa1hK9QTHORPZSbugZU8haH+YCwxo21jQr+5S8WTLz7vVzRdu+Xjiv0upsF7mTSINc9CV+huM6gW7nrzmnWc5SDtHu2RjewCZvfmDVDwMv0c4Q2LJQnChRlNNBMknH+8Tv1y1jHaaKeJf/SEeU0tZT5K6CJ89z3JXyFYpJhh0+ZNLGTc09eb/k1Ypyjy581oJw9HKYf29cMtGlnNTEmSHn9xd0e7frOKoNub2+EzfvcyPExp86R4AbvscarKVDDR5yiw+/195m9qIE2HvIHD/ULaKSPQ7xhXCnexAYSjDOjV0A9+/mCrUb+Ft3IVuKMMadPwCt8yXE2Gvtz/EV2UMUof+sR0MUgfaw3+olEJc3UMum858ipAItOjvGhl+9t82QtLazljrttV8/39Jg+XO85Wt7TY/pw3HMUcpD8A3xOd8Dezqyikc0ofi1UQA37OMEug4oe58XRJpqYZTz34ugpK/f0mD5W7DkKZX3wdIBvqQt061olbzObrTgKpZ314LSnx3RW7DlKnwEVvM5RDmXZ9ZVxYjJfUTXbqSBGLN3bhPIMT3nfpZcU0bQnTWHzgoH3epr5tIu1wmYfUe7xe6Z0X54XNhWQoUvrAZ/xvYHpfoSzGfpMLWAu/R8z0mdAkpmsPysnjZzvkyRyv7L89vewkQLyuqrgFTiu10siQASIABEgAjwpVfUdXQDetZpY/MSYo706Tiu7ik8AfMeIwyN7uFiMa0BYw5GBEmBpOFJ2AREgAkSACBABIkAEiAARIAJEgAgQASJABIgAESACRIAIEAEiQASIABEgAnQKCGv+VNi7q8rv9fgYI8RzamKwCDNmzPkLxNL8ScuHKxMEQRAEQRAEQRAEQRAEoUR4BNKg+7NmaoPvAAAAAElFTkSuQmCC" />
+  <img id="icon-back" src="data:image/png;base64,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" />
+
+
+      <a-mixin id="clickable" event-set__down="_event: mousedown; scale: 1.1 1.1 1.1;" event-set__up="_event: mouseup; scale: 1 1 1"
+        event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2;" event-set__leave="_event: mouseleave; scale: 1 1 1">
+      </a-mixin>
+      
+      <a-mixin id="button" geometry="primitive: circle; radius: 0.1" material="shader:flat; color:#fff; opacity:0.6;" mixin="clickable">
+      </a-mixin>
+
+
+
+      <a-mixin id="button-icon" 
+        event-set__1="_event: mouseenter; color: 	#FF4500"
+        event-set__2="_event: mouseleave; color: 	#FF8C00"
+        event-set__3="_event: mousedown; color: #FFCC00"
+        >
+      </a-mixin>
+      <a-mixin id="button-text" scale="1 1 1">
+      </a-mixin>
+
+
+
+            <a-mixin id="shaded-sphere" geometry="primitive: sphere; radius: 5;" material="color: #000; transparent: true; opacity: 0.7; side: back;">
+      </a-mixin>>
+
+
+
+            <script id="menuBackHome" type="html">
+      <a-entity position="-0.1 -0.5 0" scale="0.5 0.5 0.5">
+          <a-entity position="0 0 -4">
+              <a-rounded mixin="button-icon"  hidemenu-action position="0 0 0" scale="0.4 0.4 0.4" color="orange"
+              class="clickable">
+                <a-image src="#icon-back" scale="0.7 0.7 0.7" position="0.5 0.5 0.1" >
+                </a-image>
+              </a-rounded>
+            </a-entity>
+        <a-entity position="0 -0.5 -4">
+          <a-rounded mixin="button-icon" home-action position="0 0 0" scale="0.4 0.4 0.4" color="orange"
+          class="clickable">
+            <a-image src="#icon-home" scale="0.7 0.7 0.7" position="0.5 0.5 0.1" >
+            </a-image>
+          </a-rounded>
+        </a-entity>
+      </a-entity>
+        </script>
+
+
+
+
+
+      
+
+
+
+    <img id="icon-photo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiAQIJNxsVgqNFAAABbUlEQVRo3u2YsU4CMRjHf4oaRzdNfAD03HBy0afRRBIwxHdg18QEZJDIwmPI6BvIaEzUyZW7g6QOCIHS4wrXBqPfv9u1+X+/3nfXry2IRCKRSUe0iFEOW8wjgW34ayKnwUctpGI3ez/hhwiH6QAtb+EViqYebm0GIGbT49cVsZ0GoDx/4FrE9VX/cAIgAAIgAAIgAAIgAH8MoMRrdpPld7xloJA6yhvAEzkAiqsB+GRrvOvt+AO4pGt83iM/4ZDjyw9AGdg39lxoHseE7gFGOT6hr/U0DC5V1wAf4xxDaaqnqx+2ftR2CTCdY7ibOPfvJfjs8OYO4Fwbs8EzCsWAszlOBVcA98YV9B3FbYpX0QXAS0KO89QtTsKdrAARu/ZHbYNm14SFAAacZq4t+pqwEMCNkxpZXRag4axM15IB5IrmFwL0vcYL0wHaXgEs3IM5tTz7Ve2BDWXFE0LIle2LCmg6hujxYDd7kUj0//QNkRzkfnoeVv4AAAAASUVORK5CYII=" />
+
+      <a-asset-item id="json-photos" src="assets/geojson/photos.geojson" />
+      <a-asset-item id="json-geographiclines" src="assets/geojson/ne_110m_geographic_lines.geojson" />
+
+      <img id="img-climatezones" src="assets/climatezones_2048.png" />
+      <img id="img-landcover" src="assets/landcover_2048.png" />
+      <img id="img-population" src="assets/population_2048.png" />
+      <img id="img-population-colored" src="assets/population_2048_red.png" />
+
+
+
+
+
+
+      
+      <img id="icon-arrow" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJTUUH4QwRChkzFd7ypAAAAzpJREFUeNrlmztvE0EUhb+sHAINKZBwwOFRIBCEDkoc8geogc6mQqIIEj2m55lIVDgSThto8gsoSEkAKQQFR0JEIhAkhM0WKAE5FLsrzGYd7evOzHqPdAtb45k91zOz986cO4A8RoAJ4DxwEjgGHASGgSG3zSbQBr4Bn4AVYBF4AXwhgygDdaAFbCe0NjADjJtOeg9wG7BTIN3LbOCOO5YxGASmBEn3sml3bK2Y1EDcbzd1EB8FmgaQ92zVfSYlqBhE3G/XpMk3DCbv2awU+YUMkPdsIW3yixki79lrk//5DvALeAjcBX6YOhOk1vxnoOAb653QWI245KuC5HsFMMtCY1bjvOdVk5eeCZHihKYm8pJOaOoMbzsxEhiJ5TAZJrGRmH7PY+5DEk74bxZavgHvCwVR+2L+7gzwPuVnubdbPi8ZmBxJ8NBpz4TA5VgTdsAWUErghDQ3xlrQADby4akpTrD9HY8rjNFNcUK5u9O64kTFBCfUuztsoT5b0+2EltfRIY0pq24njFjARc0nyh8TOGHMfUXGxUTBvbGJglVgKWVHPACuuiFzXCecjvHbcwDzEabMLYMvZuIES/MAb9POpjQi6p7wxgKKITtfyoADou4JRQvYT39hDPgesu2wBeyl//A4ZLshy10LuYWFI07oN9wI2W7TwhEg9BOWgQMh27YtHFlKGJzNCPkoAdGGhaPJCYMTGQiEokaDawUcQdKlCOdp1wVigi3gSoINOW4ovELXwDozwsOazgsvgyNjyyP5bZe71gMRneRbXhwA8EzxhvUbOA6sK17z3Zjr/lDO0T8feCgK6o7FTSBvB3Veywn5nhcj0ldjo4aQ73k1BnKS1zmDyE/tNlhByAGzhpDfZqc2aQckBBJ/iC5s1iKQ8JC2RKZDNImMBPlIh7oloaWwHsIJUkqxyJcvFQ1OkCJfibsDqxRKSpFvkBC5lsp6yLVY2sPLDJFPXS7v4WkGyDcQRsVg8lUUoQR8MIh4E4VFU9JhcybK5vwJ1CMNxKfDJDYqMYhTOvtTkLTtHmYYVTobhAvAE9Irnq4jVDw9oMAZRf6Vz58CjrrfBZXPbwBr7o3NK5zy+a+SD/cXCbTd66h+ySAAAAAASUVORK5CYII=" />
+
+            <a-mixin id="gaze-arrow" position="0 0 -4" 
+      material="src: #icon-arrow; shader:standard; emissive: #aaa; transparent: true; opacity: 0.6;" 
+      geometry="primitive: plane; width: 0.5; height: 0.5;"></a-mixin>
+      
+
+
+
+      
+    </a-assets>
+    
+
+<a-sky radius="10" src="#img-earth" side="back" rotation="0 -90 0"></a-sky>
+<a-entity light="type: ambient; color: #fff"></a-entity>
+
+
+
+
+
+
+
+        <a-entity id="mainmenu" class="mainmenuObjects" bind__visible="mainmenu" bind__rotation="menuRotation">
+
+      <a-entity mixin="shaded-sphere"></a-entity>
+
+      <a-rounded opacity="1" width="4" height="4" radius="0.5" position="-2 -2 -4">
+        <a-entity position="2 2 0.5">
+          <a-text position="0 1 0" color="#333" font="exo2bold" value="Klimazonen" wrap-count="25" width="4" align="center"></a-text>
+          <a-text position="0 0.5 0" color="#555" font="exo2semibold" value="VR Globus" width="5" align="center"></a-text>
+
+
+          <a-rounded mixin="button-icon" explore-action position="-0.6 -0.8 0.1"  color="orange"
+          class="clickable" width="1.2" height="0.6">
+            <a-text id="exploreText" font="mozillavr" value="Start!" position="0.3 0.4 0.1" width="5" color="#333"></a-text>
+          </a-rounded>
+        </a-entity>
+
+      </a-rounded>
+
+      <a-entity rotation="0 180 0">
+        <a-rounded opacity="1" width="4" height="2" radius="0.5" position="-2 -1 -4">
+          <a-entity position="2 0.5 0.5">
+            <a-text position="0 0.9 0" color="#000" font="exo2semibold" value="Credits" wrap-count="30" width="4" align="center"></a-text>
+            <a-text position="0 0.5 0" color="#000" value="Matthias Treitler" width="4" align="center"></a-text>
+            <a-text position="0 0.2 0" color="#000" value="Version 1.0.0 (05/2018)" width="4" align="center"></a-text>
+          </a-entity>
+
+        </a-rounded>
+      </a-entity>
+
+    </a-entity>
+    </a-entity>
+    
+    <a-entity id="shadedSphere" mixin="shaded-sphere" bind__visible="menuVisible" animation__darken="property: material.opacity; from: 0; to: 1; dir: alternate; delay: 0; dur: 1500; startEvents: darken;">
+    </a-entity>
+
+
+
+
+
+    <a-entity rotation="0 -90 0">
+      <a-entity bind__visible="geographiclinesVisible" geometry="primitive: sphere; radius: 6;" material="color: #fff; transparent: true; opacity: 0.5; side: back;"
+        geojson="src: #json-geographiclines; featureKey: name;
+          lineWidth: 2;" scale="-1 1 1">
+
+      </a-entity>
+
+      <a-entity rotation="0 120 0" bind__visible="geographiclinesVisible">
+        <a-entity position="-0.5 0 0">
+          <a-text color="#ddd" value="Äquator"    position="0 0.2 -6" negate="false" font="assets/fonts/geolinien-msdf.json"></a-text>
+          <a-text color="#ddd" value="Wendekreis" position="0 2 -5.5" rotation="18 0 0"></a-text>
+          <a-text color="#ddd" value="Polarkreis" position="0 6 -3" rotation="45 0 0"></a-text>
+          <a-text color="#ddd" value="Wendekreis" position="0 -2 -5.5" rotation="-18 0 0"></a-text>
+          <a-text color="#ddd" value="Polarkreis" position="0 -6 -3" rotation="-45 0 0"></a-text>
+        </a-entity>
+      </a-entity>
+      <a-entity rotation="0 -101 0" bind__visible="geographiclinesVisible">
+        <a-text color="#ddd" value="Datumslinie" position="0 -1 -6"></a-text>
+      </a-entity>
+
+
+    </a-entity>
+
+
+    <a-entity id="explore" class="exploreObjects" bind__visible="explore">
+
+      <a-entity class="clickable" scale="-1 1 1" rotation="0 -90 0" geometry="primitive: sphere; radius: 5;" 
+        material=" transparent: true; opacity: 0; side: back;"
+          geojson="src: #json-photos; featureKey: id;
+          pointScale: 0; pointAs: point;" 
+          points-as-icons="icon: #icon-photo"
+          photos-visible bind__photos-visible="layer: layer">
+        </a-entity>
+
+      <a-entity class="selectable" rotation="0 -90 0" geometry="primitive: sphere; radius: 8;" material="transparent: true; opacity: 0.6; side: double;"
+        scale="-1 1 1" extract-color-code bind__extract-color-code="src: coloredTextureId; texture: dataTextureId"
+        interpret-color-code bind__interpret-color-code="layer: layer"></a-entity>
+
+
+      <a-entity bind__visible="showPhoto" class="photoObjects">
+        <a-sky bind__src="photoSrc" radius="4" side="back">
+            <a-text copyright-text bind__copyright-text="copyright: photoCopyright" position="1.5 -3 -1.5" rotation="60 180 0" side="double"> </a-text>
+            <a-circle class="clickable" mixin="clickable"  color="orange"
+            hidephoto-action radius="1" position="0 -3.5 0" side="double" rotation="-90 180 0">
+            
+              <a-image src="#icon-back" scale="1 1 1" position="0 0 0.1" >
+                </a-image>
+            </a-circle>
+        </a-sky>
+      </a-entity>
+
+    </a-entity>
+    <a-entity id="exploreMenu" class="exploreMenuObjects" bind__visible="menuVisible" bind__rotation="menuRotation">
+
+      <a-entity position="0 0.5 -4">
+
+        <a-image height="0.8" width="1.3" mixin="clickable" transparent="true" layer-action="climatezones" src="#img-climatezones" 
+        event-set__mouseenter="_target: #climatezonesText; visible: true"
+          event-set__mouseleave="_target: #climatezonesText; visible: false" choose-layer bind__choose-layer="layer">
+        </a-image>
+        <a-text id="climatezonesText" visible="false" value="Klimazonen anzeigen" position="-1 -0.7 0" color="#fff"></a-text>
+        <a-image height="0.8" width="1.3" mixin="clickable" transparent="true" layer-action="population" 
+        src="#img-population-colored" event-set__mouseenter="_target: #populationText; visible: true"
+          event-set__mouseleave="_target: #populationText; visible: false" choose-layer bind__choose-layer="layer">
+        </a-image>
+        <a-text id="populationText" visible="false" value="Bevoelkerungsverteilung" position="-1 -0.7 0" color="#fff"></a-text>
+
+      </a-entity>
+
+      <a-entity template="src: #menuBackHome"></a-entity>
+
+    </a-entity>
+
+
+      
+
+      <a-entity position="0 -1.6 0">
+            <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: false;">
+
+
+                  <a-entity id="cursor" position="0 0 -1" 
+                  geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01; segmentsTheta: 32"
+                  material="color: #760CE8; shader: flat; opacity: 0.8" 
+
+                  cursor="" 
+                  bind__cursor="rayOrigin: rayOrigin; fuse: isMobile; fuseTimeout: fuseTimeout"
+                  raycaster="autoRefresh: false;" 
+                  bind__raycaster="objects: cursorObjects; interval: raycasterInterval"
+                  
+                  bind__visible="cursorVisible && isMobile" 
+                  >
+                  
+                  <a-animation begin="click" easing="ease-in" attribute="scale"
+                  fill="forwards" from="0.2 0.2 0.2" to="1 1 1" dur="150"></a-animation>
+                  <a-animation begin="fusing" easing="ease-in" attribute="scale"
+                  fill="backwards" from="1 1 1" to="0.2 0.2 0.2" dur="1500"></a-animation>
+
+                  </a-entity>
+                  
+
+            <a-text color="#555" 
+                  font="mozillavr"
+                  cursor-text bind__cursor-text="code: selectedCode; 
+                  layer: layer; 
+                  menuVisible: menuVisible; exploreEnabled: explore" width="4"></a-text>
+
+            </a-entity>
+      </a-entity>
+
+
+
+
+  </a-scene>
+</body>
+</html>
