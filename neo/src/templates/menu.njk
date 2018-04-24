@@ -1,0 +1,71 @@
+
+{% macro assets() %} 
+
+{% endmacro %}
+
+{% macro render() %}
+
+    <a-entity id="mainmenu" class="mainmenuObjects" bind="visible: mainmenu" bind__rotation="menuRotation">
+      
+      <a-entity mixin="shaded-sphere"></a-entity>
+
+      <a-rounded opacity="1" width="4" height="2.5" radius="0.5" position="-2 -1.5 -4">
+        <a-entity position="2 1 0.5">
+          <a-text position="0 1 0" color="#000" value="NASA Earth Observation" wrap-count="25" width="4" align="center"></a-text>
+          <a-text position="0 0.5 0" color="#000" value="Globus" width="4" align="center"></a-text>
+
+
+
+          <a-entity class="clickable" scale="0.8 0.8 0.8">
+          <!--
+            <a-image explore-action mixin="clickable" position="-0.9 -0.5 0" src="#icon-explore" event-set__mouseenter="_target: #exploreText; visible: true"
+              event-set__mouseleave="_target: #exploreText; visible: false">
+              <a-text id="exploreText" visible="false" value="Erkunden" position="-0.5 -0.65 0" color="#000"></a-text>
+
+            </a-image>
+            -->
+
+
+          <a-rounded mixin="button-icon" explore-action position="-1.5 -0.5 0.1"  color="orange"
+          class="clickable" width="1.2" height="0.6">
+            <a-text id="exploreText" font="mozillavr" value="Start!" position="0.3 0.4 0.1" width="5" color="#333"></a-text>
+          </a-rounded>
+
+          <a-rounded mixin="button-icon" quiz-action position="0.5 -0.5 0.1"  color="green"
+          class="clickable" width="1.2" height="0.6">
+            <a-text id="quizText" font="mozillavr" value="Quiz!" position="0.3 0.4 0.1" width="5" color="#333"></a-text>
+          </a-rounded>
+
+          <!--
+            <a-image quiz-action mixin="clickable" position="0.9 -0.5 0" src="#icon-quiz" event-set__mouseenter="_target: #quizText; visible: true"
+              event-set__mouseleave="_target: #quizText; visible: false">
+              <a-text id="quizText" visible="false" value="Quiz!" position="0 -0.65 0" color="#000"></a-text>
+            </a-image>
+            -->
+        </a-entity>
+        </a-entity>
+
+      </a-rounded>
+
+      <a-entity  rotation="0 180 0">
+        <a-rounded opacity="1" width="4" height="4" radius="0.5" position="-2 -2 -4" >
+            <a-entity position="2 2 0.5">
+              <a-text position="0 0.9 0" color="#000" value="Autor" wrap-count="30" width="4" align="center"></a-text>
+              <a-text position="0 0.5 0" color="#000" value="Matthias Treitler" width="4" align="center"></a-text>
+              <a-text position="0 0.2 0" color="#000" value="Version: 1.0.0 (05/2018)" width="4" align="center"></a-text>
+
+              <a-text position="0 -0.4 0" color="#000" value="Datenquellen" wrap-count="30" width="4" align="center"></a-text>
+              <a-text position="0 -0.8 0" color="#000" value="Nasa Earth Observatory (NEO)" width="4" align="center"></a-text>
+              <a-text position="0 -1.1 0" color="#00f" value="https://neo.sci.gsfc.nasa.gov" width="4" align="center"></a-text>
+            </a-entity>
+
+        </a-rounded>
+      </a-entity>
+
+      
+    </a-entity>
+
+    <a-entity id="shadedSphere" mixin="shaded-sphere" bind__visible="menuVisible" animation__darken="property: material.opacity; from: 0; to: 1; dir: alternate; delay: 0; dur: 1500; startEvents: darken;">
+    </a-entity>
+
+{% endmacro %}

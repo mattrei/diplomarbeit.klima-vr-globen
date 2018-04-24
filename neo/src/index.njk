@@ -1,0 +1,54 @@
+{% import "templates/ui.njk" as ui %}
+{% import "templates/menu.njk" as menu %}
+{% import "templates/main.njk" as main %}
+{% import "templates/explore.njk" as explore %}
+{% import "templates/quiz.njk" as quiz %}
+{% import "templates/player.njk" as player %}
+
+{% set title = "VR Globe" %}
+{% set description = "NASA Earth Observation VR Globe" %}
+{% set image = "TODO/preview.jpg" %}
+
+
+{% set scene_properties = '
+  show="mainmenu" 
+  show-menu-controls 
+  bind__show-menu-controls="menuOpen: menuVisible; enabled: menuEnabled"
+    '|safe %}
+
+{% extends "templates/layout.njk" %}
+
+
+{% block assets %}
+
+
+<img id="img-marble" src="assets/marble/1.jpg" />
+<img id="img-temperature" src="assets/temperature/1.png" />>
+
+       
+{{ ui.assets() }}
+{{ menu.assets() }}
+{{ main.assets() }}
+{{ explore.assets() }}
+{{ quiz.assets() }}
+{{ player.assets() }}
+
+{% endblock %}
+
+
+{% block content %}
+
+<a-sky radius="10" src="#img-marble" side="back" rotation="0 -90 0"></a-sky>
+
+
+<a-entity light="type: ambient; color: #fff"></a-entity>
+
+{{ ui.render() }}
+{{ menu.render() }}
+{{ main.render() }}
+{{ explore.render() }}
+{{ quiz.render() }}
+{{ player.render() }}
+
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% macro assets() %}
+
+<img id="icon-play" src="assets/icons/play.png" />
+      <img id="icon-pause" src="assets/icons/pause.png" />
+
+            <script id="toolbarActivator" type="html">
+        
+          <a-entity id="toolbar-sphere-top" class="selectable" mixin="toolbar-sphere" 
+            geometry="thetaStart: 40; thetaLength: 25;"
+            toolbar-action
+            >
+          </a-entity>
+
+          <a-entity id="toolbar-sphere-bottom" class="selectable" mixin="toolbar-sphere" 
+            geometry="thetaStart: 120; thetaLength: 25;"
+            toolbar-action
+            >
+          </a-entity>
+        </script>
+
+{% endmacro %}
+
+{% macro render() %}
+
+    <a-entity id="explore" bind__visible="explore">
+
+      <a-entity class="selectable" mixin="texture-sphere" rotation="0 90 0" 
+        blending-texture bind__blending-texture="enabled: explore; month: month; texturesPath: layer; autoplay: autoplay; transitionDur: transitionMs; extension: extension">
+      </a-entity>
+
+      <a-entity class="exploreObjects" template="src: #toolbarActivator"></a-entity>
+      
+      <a-entity id="exploreToolbar" class="exploreToolbarObjects">
+
+        <a-entity bind__visible="toolbarVisible" bind__rotation2="toolbarRotation" bind__position="toolbarPosition" look-at="[camera]">
+          <a-entity   class="clickable">
+          <a-entity position="-0.2 -0.25 -4" rotation="0 20 0" scale="0.3 0.3 0.3">
+            <a-rounded prev-action position="-2.2 0 0" >
+              <a-text prev-text mixin="button-text" color="#000" wrap-count="18" position="0 0.5 0.1" bind__prev-text="month: month"></a-text>
+            </a-rounded>
+            <a-rounded next-action position="-1 0 0" >
+              <a-text next-text value="" mixin="button-text" color="#000" wrap-count="18" position="0 0.5 0.1" bind__next-text="month: month"></a-text>
+            </a-rounded>
+          </a-entity>
+          <a-entity position="0.2 -0.25 -4" rotation="0 -10 0" scale="0.3 0.3 0.3">
+
+            <a-rounded playpause-action bind__playpause-action="autoplay"  mixin="clickable">
+              <a-image playpause-icon  scale="0.7 0.7 0.7" position="0.5 0.5 0.1"  bind__playpause-icon="autoplay"></a-image>
+            </a-rounded>
+          </a-entity>
+        </a-entity>
+        </a-entity>
+
+      </a-entity>
+
+      <a-entity id="exploreMenu" class="exploreMenuObjects" bind__visible="menuVisible" bind__rotation="menuRotation">
+        
+        <a-entity position="0 0.5 -4">
+          <a-image height="0.8" width="1" mixin="clickable" layer-action="temperature" src="#img-temperature" event-set__mouseenter="_target: #temperatureText; visible: true"
+            event-set__mouseleave="_target: #temperatureText; visible: false" choose-layer bind__choose-layer="layer">
+          </a-image>
+          <a-text id="temperatureText" visible="false" value="Temperatur" position="-0.5 -0.7 0" color="#fff"></a-text>
+          <a-image height="0.8" width="1" mixin="clickable" layer-action="marble" src="#img-marble" event-set__mouseenter="_target: #marbleText; visible: true"
+            event-set__mouseleave="_target: #marbleText; visible: false" choose-layer bind__choose-layer="layer">
+          </a-image>
+          <a-text id="marbleText" visible="false" value="Vegetation" position="-0.5 -0.7 0" color="#fff"></a-text>
+        </a-entity>
+  
+        <a-entity template="src: #menuBackHome"></a-entity>
+  
+      </a-entity>
+
+    </a-entity>
+   
+{% endmacro %}

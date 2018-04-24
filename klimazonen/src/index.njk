@@ -1,0 +1,44 @@
+{% import "templates/ui.njk" as ui %}
+{% import "templates/menu.njk" as menu %}
+{% import "templates/main.njk" as main %}
+{% import "templates/player.njk" as player %}
+
+{% set title = "VR Globe" %}
+{% set description = "VR Globe" %}
+{% set image = "TODO/preview.jpg" %}
+
+
+{% set scene_properties = '
+  show="mainmenu" 
+  show-menu-controls 
+  bind__show-menu-controls="menuOpen: menuVisible; enabled: menuEnabled"
+    '|safe %}
+
+{% extends "templates/layout.njk" %}
+
+
+{% block assets %}
+
+<img id="img-earth" src="assets/earth_2048.jpg" />
+
+
+{{ ui.assets() }}
+{{ menu.assets() }}
+{{ main.assets() }}
+{{ player.assets() }}
+
+{% endblock %}
+
+
+{% block content %}
+
+<a-sky radius="10" src="#img-earth" side="back" rotation="0 -90 0"></a-sky>
+<a-entity light="type: ambient; color: #fff"></a-entity>
+
+{{ ui.render() }}
+{{ menu.render() }}
+{{ main.render() }}
+{{ player.render() }}
+
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% macro assets() %}
+    <img id="icon-photo" src="assets/icons/photo.png" />
+
+      <a-asset-item id="json-photos" src="assets/geojson/photos.geojson" />
+      <a-asset-item id="json-geographiclines" src="assets/geojson/ne_110m_geographic_lines.geojson" />
+
+      <img id="img-climatezones" src="assets/maps/climatezones_2048.png" />
+      <img id="img-landcover" src="assets/maps/landcover_2048.png" />
+      <img id="img-population" src="assets/maps/population_2048.png" />
+      <img id="img-population-colored" src="assets/maps/population_2048_red.png" />
+
+
+
+
+{% endmacro %}
+
+{% macro render() %}
+
+
+    <a-entity rotation="0 -90 0">
+      <a-entity bind__visible="geographiclinesVisible" geometry="primitive: sphere; radius: 6;" material="color: #fff; transparent: true; opacity: 0.5; side: back;"
+        geojson="src: #json-geographiclines; featureKey: name;
+          lineWidth: 2;" scale="-1 1 1">
+
+      </a-entity>
+
+      <a-entity rotation="0 120 0" bind__visible="geographiclinesVisible">
+        <a-entity position="-0.5 0 0">
+          <a-text color="#ddd" value="Äquator"    position="0 0.2 -6" negate="false" font="assets/fonts/geolinien-msdf.json"></a-text>
+          <a-text color="#ddd" value="Wendekreis" position="0 2 -5.5" rotation="18 0 0"></a-text>
+          <a-text color="#ddd" value="Polarkreis" position="0 6 -3" rotation="45 0 0"></a-text>
+          <a-text color="#ddd" value="Wendekreis" position="0 -2 -5.5" rotation="-18 0 0"></a-text>
+          <a-text color="#ddd" value="Polarkreis" position="0 -6 -3" rotation="-45 0 0"></a-text>
+        </a-entity>
+      </a-entity>
+      <a-entity rotation="0 -101 0" bind__visible="geographiclinesVisible">
+        <a-text color="#ddd" value="Datumslinie" position="0 -1 -6"></a-text>
+      </a-entity>
+
+
+    </a-entity>
+
+
+    <a-entity id="explore" class="exploreObjects" bind__visible="explore">
+
+      <a-entity class="clickable" scale="-1 1 1" rotation="0 -90 0" geometry="primitive: sphere; radius: 5;" 
+        material=" transparent: true; opacity: 0; side: back;"
+          geojson="src: #json-photos; featureKey: id;
+          pointScale: 0; pointAs: point;" 
+          points-as-icons="icon: #icon-photo"
+          photos-visible bind__photos-visible="layer: layer">
+        </a-entity>
+
+      <a-entity class="selectable" rotation="0 -90 0" geometry="primitive: sphere; radius: 8;" material="transparent: true; opacity: 0.6; side: double;"
+        scale="-1 1 1" extract-color-code bind__extract-color-code="src: coloredTextureId; texture: dataTextureId"
+        interpret-color-code bind__interpret-color-code="layer: layer"></a-entity>
+
+
+      <a-entity bind__visible="showPhoto" class="photoObjects">
+        <a-sky bind__src="photoSrc" radius="4" side="back">
+            <a-text copyright-text bind__copyright-text="copyright: photoCopyright" position="1.5 -3 -1.5" rotation="60 180 0" side="double"> </a-text>
+            <a-circle class="clickable" mixin="clickable"  color="orange"
+            hidephoto-action radius="1" position="0 -3.5 0" side="double" rotation="-90 180 0">
+            
+              <a-image src="#icon-back" scale="1 1 1" position="0 0 0.1" >
+                </a-image>
+            </a-circle>
+        </a-sky>
+      </a-entity>
+
+    </a-entity>
+    <a-entity id="exploreMenu" class="exploreMenuObjects" bind__visible="menuVisible" bind__rotation="menuRotation">
+
+      <a-entity position="0 0.5 -4">
+
+        <a-image height="0.8" width="1.3" mixin="clickable" transparent="true" layer-action="climatezones" src="#img-climatezones" 
+        event-set__mouseenter="_target: #climatezonesText; visible: true"
+          event-set__mouseleave="_target: #climatezonesText; visible: false" choose-layer bind__choose-layer="layer">
+        </a-image>
+        <a-text id="climatezonesText" visible="false" value="Klimazonen anzeigen" position="-1 -0.7 0" color="#fff"></a-text>
+        <a-image height="0.8" width="1.3" mixin="clickable" transparent="true" layer-action="population" 
+        src="#img-population-colored" event-set__mouseenter="_target: #populationText; visible: true"
+          event-set__mouseleave="_target: #populationText; visible: false" choose-layer bind__choose-layer="layer">
+        </a-image>
+        <a-text id="populationText" visible="false" value="Bevoelkerungsverteilung" position="-1 -0.7 0" color="#fff"></a-text>
+
+      </a-entity>
+
+      <a-entity template="src: #menuBackHome"></a-entity>
+
+    </a-entity>
+{% endmacro %}

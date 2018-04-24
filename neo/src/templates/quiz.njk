@@ -1,0 +1,73 @@
+{% set maxRounds = "10" %}
+
+{% macro assets() %}
+      <img id="icon-star" src="assets/icons/star.png" />
+      <img id="icon-openround" src="assets/icons/round_open.png" />
+      <img id="icon-fullround" src="assets/icons/round_full.png" />
+
+            <a-mixin id="answer-button" animation__green="property: color; from: #fff; to: #0f0; easing: easeInExpo; dur: 1500; startEvents: green;"
+        animation__red="property: color; from: #fff; to:#f00; easing: easeInExpo;  dur: 1500; startEvents: red;">
+      </a-mixin>
+
+
+{% endmacro %}
+
+{% macro render() %}
+
+    <a-entity id="quiz" class="quizObjects" bind="visible: quiz">
+
+      <a-entity mixin="texture-sphere" rotation="0 -90 0" static-texture scale="-1 1 1" bind__static-texture="texturesPath: quizLayer; month: quizMonth">
+      </a-entity>
+
+
+
+      <a-entity id="quizMenu" class="quizMenuObjects" bind__visible="menuVisible" bind__rotation="menuRotation">
+
+
+        <a-entity position="-1 0.7 -4">
+
+
+          <a-text position="0 0.7 0" quiztitle-text="maxRounds: {{ maxRounds }}" bind__quiztitle-text="finished: finished; round: round" wdith="3" color="#fff"></a-text>
+          
+
+          <a-entity position="0 0.4 0" round-circles="maxRounds: {{ maxRounds }}" bind__round-circles="round: round; finished: finished"></a-entity>
+
+          <a-entity position="0 0 0" score-stars="maxRounds: {{ maxRounds }}" bind__score-stars="score: score">
+
+          <a-text position="0 -0.6 0" quizfinished-text bind__quizfinished-text="finished: finished; score: score" wdith="3" color="#fff"></a-text>
+          </a-entity>
+
+        </a-entity>
+
+
+
+        <a-entity position="-0.3 0 -4" rotation="0 0 0" scale="0.5 0.5 0.5">
+          <a-entity answer-buttons="maxRounds: {{ maxRounds }}" bind__answer-buttons="answer: quizMonth; finished: finished; round: round">
+            <a-rounded id="answerA" position="-1.2 0 0" color="#fff" class="clickable" mixin="answer-button" bind__data-month="monthA">
+              <a-text width="9" position="0.1 0.5 0" color="#000" month-text bind__month-text="month: monthA"></a-text>
+            </a-rounded>
+            <a-rounded id="answerB" position="0 0 0" color="#fff" class="clickable" mixin="answer-button" bind__data-month="monthB">
+              <a-text width="9" position="0.1 0.5 0" color="#000" month-text bind__month-text="month: monthB"></a-text>
+            </a-rounded>
+            <a-rounded id="answerC" position="1.2 0 0" color="#fff" class="clickable" mixin="answer-button" bind__data-month="monthC">
+              <a-text width="9" position="0.1 0.5 0" color="#000" month-text bind__month-text="month: monthC"></a-text>
+            </a-rounded>
+
+            <a-image id="star" src="#icon-star" material="shader: standard; opacity: 1; alphaTest: 0.5; emissive: #ff0;" position="0.3 1.6 0"
+              transparent="true" visible="false" 
+              animation="property: scale; easing: easeOutBack; 
+                    from: 0.1 0.1 0.1; to: 1 1 1; dur: 2000; startEvents: show;">
+            </a-image>
+          </a-entity>
+        </a-entity>
+        <a-entity template="src: #menuBackHome"></a-entity>
+      </a-entity>
+      </a-entity>
+
+      <a-entity id="fadeBackground" mixin="shaded-sphere" visible="false"
+       animation="property: components.material.material.opacity; dir: alternate; dur: 1000;
+          easing: easeInSine; from: 0; to: 1; startEvents: fade">
+      </a-entity>
+    </a-entity>
+
+{% endmacro %}

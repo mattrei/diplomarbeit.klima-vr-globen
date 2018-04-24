@@ -1,0 +1,62 @@
+{
+  "name": "NEO",
+  "version": "1.0.0",
+  "description": "A globe with imagenariy from NEOS.",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env webpack-dev-server --host 0.0.0.0 --progress --colors --hot -d --inline",
+    "start": "serve",
+    "lint": "semistandard --fix -v | snazzy"
+  },
+  "repository": "mattrei/diplomarbeit.klima-vr-globen",
+  "license": "MIT",
+  "semistandard": {
+    "globals": [
+      "AFRAME",
+      "THREE"
+    ],
+    "ignore": [
+      "**/vendor/**",
+      "build/**"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "dependencies": {
+    "aframe": "^0.8.2",
+    "aframe-animation-component": "^4.1.2",
+    "aframe-event-set-component": "^4.1.1",
+    "aframe-geojson-component": "^1.2.4",
+    "aframe-layout-component": "^4.3.1",
+    "aframe-lerp-component": "^1.1.0",
+    "aframe-look-at-component": "^0.6.0",
+    "aframe-rounded": "^1.0.3",
+    "aframe-state-component": "^2.3.1",
+    "aframe-template-component": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "cross-env": "^5.1.4",
+    "dotenv-webpack": "^1.5.5",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-harddisk-plugin": "^0.1.0",
+    "html-webpack-plugin": "^2.30.1",
+    "nunjucks-html-loader": "^1.1.0",
+    "semistandard": "^11.0.0",
+    "serve": "^6.5.5",
+    "snazzy": "^7.1.1",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-dashboard": "^1.1.1",
+    "webpack-dev-server": "^2.11.2"
+  }
+}

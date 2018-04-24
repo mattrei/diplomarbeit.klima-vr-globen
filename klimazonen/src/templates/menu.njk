@@ -1,0 +1,46 @@
+
+{% macro assets() %}
+
+      
+
+{% endmacro %}
+
+{% macro render() %}
+
+
+        <a-entity id="mainmenu" class="mainmenuObjects" bind__visible="mainmenu" bind__rotation="menuRotation">
+
+      <a-entity mixin="shaded-sphere"></a-entity>
+
+      <a-rounded opacity="1" width="4" height="4" radius="0.5" position="-2 -2 -4">
+        <a-entity position="2 2 0.5">
+          <a-text position="0 1 0" color="#333" font="exo2bold" value="Klimazonen" wrap-count="25" width="4" align="center"></a-text>
+          <a-text position="0 0.5 0" color="#555" font="exo2semibold" value="VR Globus" width="5" align="center"></a-text>
+
+
+          <a-rounded mixin="button-icon" explore-action position="-0.6 -0.8 0.1"  color="orange"
+          class="clickable" width="1.2" height="0.6">
+            <a-text id="exploreText" font="mozillavr" value="Start!" position="0.3 0.4 0.1" width="5" color="#333"></a-text>
+          </a-rounded>
+        </a-entity>
+
+      </a-rounded>
+
+      <a-entity rotation="0 180 0">
+        <a-rounded opacity="1" width="4" height="2" radius="0.5" position="-2 -1 -4">
+          <a-entity position="2 0.5 0.5">
+            <a-text position="0 0.9 0" color="#000" font="exo2semibold" value="Credits" wrap-count="30" width="4" align="center"></a-text>
+            <a-text position="0 0.5 0" color="#000" value="Matthias Treitler" width="4" align="center"></a-text>
+            <a-text position="0 0.2 0" color="#000" value="Version 1.0.0 (05/2018)" width="4" align="center"></a-text>
+          </a-entity>
+
+        </a-rounded>
+      </a-entity>
+
+    </a-entity>
+    </a-entity>
+    
+    <a-entity id="shadedSphere" mixin="shaded-sphere" bind__visible="menuVisible" animation__darken="property: material.opacity; from: 0; to: 1; dir: alternate; delay: 0; dur: 1500; startEvents: darken;">
+    </a-entity>
+
+{% endmacro %}

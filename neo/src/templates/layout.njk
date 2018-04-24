@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="{{ description }}">
+  <meta property="og:image" content="{{ image }}"></meta>
+  <!--<script src="https://rawgit.com/aframevr/aframe/9aa61a5/dist/aframe-master.js"></script>-->
+</head>
+<body>
+  <a-scene {{ scene_properties }}>
+    <a-assets>
+      {% block assets %}{% endblock %}
+      {% block mixins %}{% endblock %}
+    </a-assets>
+    {% block content %}{% endblock %}
+  </a-scene>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+{% macro assets() %}
+    
+        <a-asset-item id="json-world-110m" src="assets/geojson/world-110m.v1.json" />
+      <a-asset-item id="json-geographiclines" src="assets/geojson/ne_110m_geographic_lines.geojson" />
+      
+      
+      <a-mixin id="toolbar-sphere"
+        geometry="primitive: sphere; radius: 6.1; segments-height: 8; segments-width: 16;" 
+        material="color: #f00; transparent: true; opacity: 0; side: double;">
+      </a-mixin>>
+
+
+
+
+
+      <a-mixin id="texture-sphere" geometry="primitive: sphere; radius: 10; segments-height: 16; segments-width: 32;" material="side: back; transparent: true;">
+      </a-mixin>
+
+{% endmacro %}
+
+{% macro render() %}
+
+    <a-entity rotation="0 -90 0">
+      <a-entity bind__visible="geographiclinesVisible" geometry="primitive: sphere; radius: 6;" material="color: #fff; transparent: true; opacity: 0.8; side: back;"
+        geojson="src: #json-geographiclines; featureKey: name;
+          lineWidth: 2;" scale="-1 1 1">
+
+      </a-entity>
+
+      <a-entity rotation="0 125 0" bind__visible="geographiclinesVisible">
+        <a-text color="#ddd" value="Äquator"      position="0 0.2 -6" negate="false" font="assets/fonts/geolinien-msdf.json"></a-text>
+        <a-text color="#ddd" value="N Wendekreis" position="0 2 -5.5" rotation="18 0 0"></a-text>
+        <a-text color="#ddd" value="N Polarkreis" position="0 6 -3" rotation="45 0 0"></a-text>
+        <a-text color="#ddd" value="S Wendekreis" position="0 -2 -5.5" rotation="-18 0 0"></a-text>
+        <a-text color="#ddd" value="S Polarkreis" position="0 -6 -3" rotation="-45 0 0"></a-text>
+      </a-entity>
+      <a-entity rotation="0 -101 0" bind__visible="geographiclinesVisible">
+        <a-text value="Datumslinie" position="0 -1 -6"></a-text>
+      </a-entity>
+
+      <a-entity bind__visible="landbordersVisible" geometry="primitive: sphere; radius: 6;" material="color: #fff; transparent: true; opacity: 0.8; side: back;"
+        geojson="src: #json-world-110m; topologyObject: land;
+        lineWidth: 2;" scale="-1 1 1">
+      </a-entity>
+    </a-entity>
+
+
+{% endmacro %}
